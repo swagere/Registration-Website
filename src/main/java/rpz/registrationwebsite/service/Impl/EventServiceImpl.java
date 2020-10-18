@@ -81,4 +81,13 @@ public class EventServiceImpl implements EventService {
         eventRepository.save(event);
     }
 
+    @Override
+    public boolean isExist(String event_name, String stu1_id) {
+        Event event = eventRepository.findByEventNameAndStu1Id(event_name, stu1_id);
+        if (event == null) {
+            return false;
+        }
+        return true;
+    }
+
 }
