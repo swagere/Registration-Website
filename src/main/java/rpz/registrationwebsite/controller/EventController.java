@@ -42,10 +42,14 @@ public class EventController {
     public @ResponseBody AjaxResponse isExist(@RequestBody String str) {
         String event_name = JSON.parseObject(str).get("event_name").toString();
         String stu1_id = JSON.parseObject(str).get("stu1_id").toString();
-        boolean flag = eventService.isExist(event_name, stu1_id);
+        String stu1_name = eventService.isExist(event_name, stu1_id);
+        boolean flag = true;
+        if (stu1_name == null) {
+            flag = false;
+        }
         Map<String, Object> res = new HashMap<>();
         res.put("isExist", flag);
-        res.put("stu1_id", stu1_id);
+        res.put("stu1_name", stu1_name);
         return AjaxResponse.success(res);
     }
 }
