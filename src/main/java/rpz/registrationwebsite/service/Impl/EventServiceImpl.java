@@ -36,12 +36,23 @@ public class EventServiceImpl implements EventService {
         if (stu2_id.equals("")) {  //如果没有第二个学生
             if (stu3_id.equals("")) {
                 //如果只有第一个学生
+                if (!stu1_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+
                 if (stu_ids.contains(stu1_id)) {
                     throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"队中有学生已参加此类比赛，不能重复报名");
                 }
             }
             else {
                 //如果有第一个和第三个学生
+                if (!stu1_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+                if (!stu3_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+
                 if (stu1_id.equals(stu3_id)) {
                     throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"填写时提交相同学号，请确认信息");
                 }
@@ -55,6 +66,13 @@ public class EventServiceImpl implements EventService {
         else {  //如果有第二个学生
             if (stu3_id.equals("")) {
                 //如果有第一个和第二个学生
+                if (!stu1_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+                if (!stu2_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+
                 if (stu1_id.equals(stu2_id)) {
                     throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"填写时提交相同学号，请确认信息");
                 }
@@ -66,6 +84,16 @@ public class EventServiceImpl implements EventService {
             }
             else {
                 //如果三个学生都有
+                if (!stu1_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+                if (!stu2_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+                if (!stu3_id.matches("^\\d{10}$")) {
+                    throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"学号需全为数字");
+                }
+
                 if (stu1_id.equals(stu2_id) || stu2_id.equals(stu3_id) || stu1_id.equals(stu3_id)) {
                     throw new CustomException(CustomExceptionType.USER_INPUT_ERROR,"填写时提交相同学号，请确认信息");
                 }
